@@ -24,19 +24,11 @@ CREATE TABLE Acessorios (
 
 CREATE TABLE Pedido ( 
     Data DATE,
-    TelefoneCliente VARCHAR(20),
-    PRIMARY KEY (Data, TelefoneCliente),
-    FOREIGN KEY (TelefoneCliente)
-        REFERENCES Cliente(Telefone)
-);
-
-CREATE TABLE Encomenda (
-    Data DATE,
-    TelefoneCliente VARCHAR(20),
     Status VARCHAR(50) NOT NULL,
-    PRIMARY KEY (Data, TelefoneCliente),
-    FOREIGN KEY (TelefoneCliente)
-        REFERENCES Cliente(Telefone)
+    Tipo VARCHAR(50) NOT NULL,
+    TelefoneCliente VARCHAR(20) NOT NULL,
+    PRIMARY KEY (Data),
+    FOREIGN KEY (TelefoneCliente) REFERENCES Cliente(Telefone)
 );
 
 CREATE TABLE Produto (
@@ -50,12 +42,15 @@ CREATE TABLE Produto (
 );
 
 CREATE TABLE ProdutoInformacao (
-    Descricao VARCHAR(255),
+    DescricaoProduto VARCHAR(255),
+    RegiaoProduto VARCHAR(100),
+    PaisProduto VARCHAR(100),
+    CidadeProduto VARCHAR(100),
     Nome VARCHAR(100) NOT NULL,
     Categoria VARCHAR(50) NOT NULL,
-    PRIMARY KEY (Descricao),
-    FOREIGN KEY (Descricao)
-        REFERENCES Produto (Descricao)
+    PRIMARY KEY (DescricaoProduto, RegiaoProduto, PaisProduto, CidadeProduto),
+    FOREIGN KEY (DescricaoProduto, RegiaoProduto, PaisProduto, CidadeProduto)
+        REFERENCES Produto (Descricao, RegiaoOrigem, PaisOrigem, CidadeOrigem)
 );
 
 -- ESPECIALIZAÇÕES DE PRODUTO (HERANÇA/SUBTIPOS)
@@ -81,7 +76,7 @@ CREATE TABLE Bebida_Alcoolica (
         REFERENCES Produto(Descricao, RegiaoOrigem, PaisOrigem, CidadeOrigem)
 );
 
-CREATE TABLE Chas_e_Cafes (
+CREATE TABLE Bebida_Preparada (
     DescricaoProduto VARCHAR(255),
     RegiaoProduto VARCHAR(100),
     PaisProduto VARCHAR(100),
@@ -113,22 +108,21 @@ CREATE TABLE Item_Interno (
     CidadeProduto VARCHAR(100),
     DataConfeccao DATE NOT NULL,
     PRIMARY KEY (DataValidade, DescricaoProduto, RegiaoProduto, PaisProduto, CidadeProduto),
-    FOREIGN KEY (DescricaoProduto, RegiaoProduto, PaisProduto, CidadeProduto) 
-        REFERENCES Produto(Descricao, RegiaoOrigem, PaisOrigem, CidadeOrigem)
+    FOREIGN KEY (DataValidade, DescricaoProduto, RegiaoProduto, PaisProduto, CidadeProduto) 
+        REFERENCES Item_Estoque(DataValidade, DescricaoProduto, RegiaoProduto, PaisProduto, CidadeProduto)
 );
 
 CREATE TABLE Item_Pedido (
     DataPedido DATE,
-    TelefonePedido VARCHAR(20),
     DescricaoProduto VARCHAR(255),
     RegiaoProduto VARCHAR(100),
     PaisProduto VARCHAR(100),
     CidadeProduto VARCHAR(100),
     Quantidade INT NOT NULL,
     Descricao VARCHAR(255),
-    PRIMARY KEY (DataPedido, TelefonePedido, DescricaoProduto, RegiaoProduto, PaisProduto, CidadeProduto),
-    FOREIGN KEY (DataPedido, TelefonePedido) 
-        REFERENCES Pedido(Data, TelefoneCliente),
+    PRIMARY KEY (DataPedido, DescricaoProduto, RegiaoProduto, PaisProduto, CidadeProduto),
+    FOREIGN KEY (DataPedido) 
+        REFERENCES Pedido(Data),
     FOREIGN KEY (DescricaoProduto, RegiaoProduto, PaisProduto, CidadeProduto) 
         REFERENCES Produto(Descricao, RegiaoOrigem, PaisOrigem, CidadeOrigem)
 );
