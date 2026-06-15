@@ -1,7 +1,3 @@
--- popular_banco_sem_napa.sql
--- Popula o banco Delicatessen sem registros de Napa Valley
--- Acessorios corrigidos: utensilios/equipamentos de preparo de cafe e cha.
-
 TRUNCATE TABLE
     IndicacaoSommelier,
     Prepara,
