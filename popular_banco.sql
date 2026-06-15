@@ -53,16 +53,16 @@ INSERT INTO Acessorios (Nome, TipoPreparo) VALUES
 ('Chemex','Filtragem');
 
 INSERT INTO Pedido (Data, TelefoneCliente, Status, Tipo) VALUES
-('2026-01-01 10:00:00','21999990001','Entregue','Online'),
-('2026-01-02 10:00:00','21999990002','Entregue','Online'),
-('2026-01-03 10:00:00','21999990003','Pendente','Loja'),
-('2026-01-04 10:00:00','21999990004','Entregue','Loja'),
-('2026-01-05 10:00:00','21999990005','Pendente','Online'),
-('2026-01-06 10:00:00','21999990006','Entregue','Online'),
-('2026-01-07 10:00:00','21999990007','Cancelado','Loja'),
-('2026-01-08 10:00:00','21999990008','Entregue','Online'),
-('2026-01-09 10:00:00','21999990009','Pendente','Loja'),
-('2026-01-10 10:00:00','21999990010','Entregue','Online');
+('2026-01-01 10:00:00','21999990001','Entregue','Encomenda'),
+('2026-01-02 10:00:00','21999990002','Entregue','Encomenda'),
+('2026-01-03 10:00:00','21999990003','Pendente','Pedido'),
+('2026-01-04 10:00:00','21999990004','Entregue','Pedido'),
+('2026-01-05 10:00:00','21999990005','Pendente','Encomenda'),
+('2026-01-06 10:00:00','21999990006','Entregue','Encomenda'),
+('2026-01-07 10:00:00','21999990007','Cancelado','Pedido'),
+('2026-01-08 10:00:00','21999990008','Entregue','Encomenda'),
+('2026-01-09 10:00:00','21999990009','Pendente','Pedido'),
+('2026-01-10 10:00:00','21999990010','Entregue','Encomenda');
 
 INSERT INTO Produto (Descricao, RegiaoOrigem, PaisOrigem, CidadeOrigem) VALUES
 ('Queijo Canastra','Minas Gerais','Brasil','Canastra'),
